@@ -1,4 +1,4 @@
-#!/home/yueyaog/.conda/envs/deep-learning/bin/python3
+#!/usr/bin/env python
 ########################################################################################
 #
 # DTWKmeans.py
@@ -57,20 +57,20 @@ args = parser.parse_args()
 
 ##########################################################################################
 exp_df = pd.read_csv(args.gene_expression_matrix,sep="\t",index_col='gene')
-MTRinput_df = pd.read_csv(args.gene_expression_matrix,sep='\t',index_col='gene')
-MTR_arr = MTRinput_df.values
-print('Input Gene Expression Matrix has {} entries with {} time points'.format(MTR_arr.shape[0],MTR_arr.shape[1]))
+GEMinput_df = pd.read_csv(args.gene_expression_matrix,sep='\t',index_col='gene')
+GEM_arr = GEMinput_df.values
+print('Input Gene Expression Matrix has {} entries with {} time points'.format(GEM_arr.shape[0],GEM_arr.shape[1]))
 # Normalization with standard scaler
-gene_expression_matrix = MTR_arr
+gene_expression_matrix = GEM_arr
 gene_expression_matrix -= np.vstack(np.nanmean(gene_expression_matrix, axis=1))
 gene_expression_matrix /= np.vstack(np.nanstd(gene_expression_matrix, axis=1))
 
 # soft-DTW-Kmeans
 # UPDATES(FEB19-2021), implant the argv for optimal K
 # seed of 10 for reproducibility 
-dtw_Ymtr = TimeSeriesKMeans(n_clusters=args.optimal_K, metric="softdtw", metric_params={"gamma": .01}, verbose=True,random_state=10,n_jobs=-1)
-Ymtr_predict = dtw_Ymtr.fit_predict(gene_expression_matrix)
-print('The Shape of Cluster Centers are {}'.format(dtw_Ymtr.cluster_centers_.shape))
+dtw_Y = TimeSeriesKMeans(n_clusters=args.optimal_K, metric="softdtw", metric_params={"gamma": .01}, verbose=True,random_state=10,n_jobs=-1)
+Y_predict = dtw_Y.fit_predict(gene_expression_matrix)
+print('The Shape of Cluster Centers are {}'.format(dtw_Y.cluster_centers_.shape))
 
 # CREATE A DIRECTORY TO SAVE THE RESULTS
 os.mkdir(args.output_path_dir)
@@ -78,15 +78,15 @@ os.chdir(args.output_path_dir)
 
 # Print out the cluster result output
 df_label = pd.DataFrame()
-df_label['gene'] = MTRinput_df.index
-df_label['cluster'] = dtw_Ymtr.labels_+1
+df_label['gene'] = GEMinput_df.index
+df_label['cluster'] = dtw_Y.labels_+1
 df_label.to_csv(args.output_file_prefix+"_ClusteringResults.csv")
 
 # Print out the result summary and save it as a csv
 df_sum = pd.DataFrame()
 cluster_list = []
 GeneNum_list = []
-for i,j in collections.Counter(Ymtr_predict).items():
+for i,j in collections.Counter(Y_predict).items():
     cluster_list.append(i+1)
     GeneNum_list.append(j)
 
@@ -106,7 +106,7 @@ for i in DTWclusterlist:
 
 
 # Time Set for plotting
-t_label = list(map(int,MTRinput_df.columns.tolist()))
+t_label = list(map(int,GEMinput_df.columns.tolist()))
 t = t_label
 t /= np.mean(np.diff(t))
 
@@ -117,16 +117,16 @@ plt.figure(figsize=(20,20))
 subplots = int(math.sqrt(args.optimal_K))+1
 for yi in range(args.optimal_K):
     ax = plt.subplot(subplots,subplots, yi + 1)
-    for xx in gene_expression_matrix[Ymtr_predict == yi]:
+    for xx in gene_expression_matrix[Y_predict == yi]:
         ax.plot(t,xx.ravel(),'k-', alpha=0.15)
-    ax.plot(t,dtw_Ymtr.cluster_centers_[yi].ravel(), "r-")
+    ax.plot(t,dtw_Y.cluster_centers_[yi].ravel(), "r-")
     ax.set_xticks(t)
     ax.set_xticklabels(t_label)
     ax.set_ylabel('Gene expression')
-    ax.set_title('Cluster {} ({})'.format(yi + 1,collections.Counter(Ymtr_predict)[yi]))
+    ax.set_title('Cluster {} ({})'.format(yi + 1,collections.Counter(Y_predict)[yi]))
     ax.grid(False)
     if yi == 1:
-        plt.title("DTW Mtr $k$-means")
+        plt.title("DTW $k$-means")
         
 plt.tight_layout()
 plt.savefig(args.output_file_prefix+'_clustering.png',dpi=200)
