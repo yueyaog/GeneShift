@@ -1,0 +1,14 @@
+#PBS -N DTWKM
+#PBS -l select=1:ncpus=4:mem=4gb:interconnect=hdr,walltime=72:00:00
+#PBS -j oe
+#PBS -m abe
+#PBS -M yueyaog@clemson.edu
+
+### The purpose of this pbs is to be a Template for DTW KMeans Cluster###
+
+cd ${PBS_O_WORKDIR}
+
+module add anaconda3/5.1.0-gcc/8.3.1
+
+source activate deep-learning
+python DTWKMeans.py -i /scratch2/yueyaog/TimeCourse/TSLEARN_Kmean/Mtr_Root_Prep/logquan_DATA/Mtr_RootGEMs_OFFremoved.txt -k KX -o /scratch2/yueyaog/TimeCourse/TSLEARN_Kmean/dtwKMeans/MtrRoot_DTWKMeans/DTW-KKX -p DTW-KKX
