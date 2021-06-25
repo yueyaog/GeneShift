@@ -8,7 +8,7 @@ This workflow will capture **pattern and degree change over time** based on user
 
 
 ## Classification
-The classifcation script sorts clusters using time series data and supervised learning techniques. The script trains 3 models: a 1-D CNN, MLP, and an LSTM. The LSTM is the main model while the other two are used for comparison. 
+The classifcation script sorts clusters using time series data and supervised learning techniques. The script trains 3 models: a 1-D CNN, an MLP, and an LSTM. The LSTM is the main model while the other two are used for comparison. 
 
 TODO: Finish documenting classification script
   
