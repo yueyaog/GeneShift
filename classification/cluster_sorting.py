@@ -124,7 +124,6 @@ def create_lstm(num_labels, num_features, time_steps, layer_units=100, dropout=0
     # Last LSTM should have reutrn_sequences=False for classification
     # define LSTM model
     model = keras.models.Sequential()
-    # try changing return_sequences to false
     #model.add(keras.layers.LSTM(units=100, dropout=0.2, activation='relu', return_sequences=True, input_shape=(time_steps, num_features)))
     model.add(keras.layers.LSTM(units=100, dropout=dropout, activation='relu', return_sequences=True, input_shape=(time_steps, num_features)))
     #model.add(keras.layers.Flatten())
