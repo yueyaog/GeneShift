@@ -29,10 +29,19 @@ A17C_Medtr2g026050_rep2	  5.221980164   5.157623152   5.294473715   5.29495152  
 A17R_Medtr7g059515_rep2	  0             0.403085897   0.091756243   0.140124224   0.125210248   Mtr-Shoot-DTW-K50-044-DPGP002
 ```
 
+__PBS Script:__
+
+The PBS script is used to submit a job on the palmetto cluster. The script loops through all the csv files in the 'data' and runs the classification on each file. The command line arguments can be changed in the pbs script and are as follows:
+- torch
+- pandas
+- matplotlib
+- scikit-learn
+- seaborn
+
 
 __Output:__
 
 The main output of the script is a confusion matrix and an F1 score for each model, these are created in a 'results' directory. The confusion matrix shows how well the trained model classified each sample from the test split. The expected values are on the y-axis and the predicted values are on the x-axis. This matrix is normalized to show a percentage of samples classfied. So if there are five genes in cluster A but the model predicted two of these genes are in cluster B, the cluster A row would could contain a 60 in column A and a 40 in column B. This normalization can be disabled in the confusion matrix function. The F1 scored is written to a text file
 
-TODO: Write in insctructions to run script
+TODO: Write in insctructions to run script and add dependencies
   
