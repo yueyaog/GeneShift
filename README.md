@@ -1,6 +1,7 @@
 # GeneShift
 
-This workflow is designed to detect pattern change of time-series gene expression data. ![Image of GeneShift]  
+This workflow is designed to detect pattern change of time-series gene expression data. 
+![Image of GeneShift]  
 (https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/GeneShift_repo.png)
 
 ## Workflow Summary
