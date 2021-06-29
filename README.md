@@ -20,6 +20,8 @@ __Overview:__
 
 The classifcation script sorts clusters using time series data and supervised learning techniques. The script trains 3 models: a 1-D CNN, an MLP, and an LSTM. The LSTM is the main model while the other two are used for comparison. Each model is trained using a 70-30 train test split of the data provided and outputs a confusion matrix and an F1 score to show the accuracy of each model. Each cluster must contain at least two samples or else the confusion matrix will not be alligned due to the train test split. This can be controlled by the threshold parameter in the pbs script if the user wants to exclude clusters that only have a few samples. 
 
+__Dependencies:__
+
 __Data:__
 
 The script takes a single csv file of RNA expression changes over time. The first row is the header containing the gene column, the different time steps, and the cluster column. The other rows contain the gene, RNA expressions at each time step, and the cluster it belongs to. The csv file must be in the 'data' directory. Multiple csv files can be in this directory and the script will output a results directory for each file. An example is shown below, this example has one feature, the RNA expression, and five time steps.
@@ -32,12 +34,10 @@ A17R_Medtr7g059515_rep2	  0             0.403085897   0.091756243   0.140124224 
 __PBS Script:__
 
 The PBS script is used to submit a job on the palmetto cluster. The script loops through all the csv files in the 'data' and runs the classification on each file. The command line arguments can be changed in the pbs script and are as follows:
-- torch
-- pandas
-- matplotlib
-- scikit-learn
-- seaborn
-
+- file_name
+- threshold
+- test_split
+- epochs
 
 __Output:__
 
