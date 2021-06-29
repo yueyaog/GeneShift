@@ -1,11 +1,17 @@
 # GeneShift
 
-This workflow is designed to detect pattern change of time-series gene expression data.   GeneShift workflow will perform following tasks:
-  * OFF gene check
-  * Cluster expression of individual replicate over time using [DTW-KMeans](https://arxiv.org/abs/1703.01541) and then fine clustering with [DP_GP_cluster](https://github.com/PrincetonUniversity/DP_GP_cluster/tree/master/DP_GP)
-  * Using deep learning model(RNN LSTM) to test the robusticity of clustering 
-  * Cluster finalization (remove poor quality gene based on replicate consistency) 
-  * Conduct pattern and degree change capture and visualize the performance
+This workflow is designed to detect pattern change of time-series gene expression data. ![Image of GeneShift]  
+(https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/GeneShift_repo.png)
+
+## Workflow Summary
+ GeneShift workflow performs the following tasks:
+  1. Generate input dataset
+  2. Compute initial clustering using [DTW-KMeans](https://arxiv.org/abs/1703.01541)
+  3. Compute fine clustering with [DP_GP_cluster](https://github.com/PrincetonUniversity/DP_GP_cluster/tree/master/DP_GP)
+  4. Determine the number of clusters that are optimal for classification
+  5. Using deep learning model(RNN LSTM) to test the robusticity of clustering
+  6. Post-clustering analysis (replicate sorting) 
+  
 
 
 ## Classification
