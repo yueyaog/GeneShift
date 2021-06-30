@@ -34,10 +34,10 @@ A17R_Medtr7g059515_rep2	  0             0.403085897   0.091756243   0.140124224 
 __PBS Script:__
 
 The PBS script is used to submit a job on the palmetto cluster. The script loops through all the csv files in the 'data' and runs the classification on each file. The command line arguments can be changed in the pbs script and are as follows:
-- file_name
-- threshold
-- test_split
-- epochs
+- file_name - The file name of the csv file. This is automatically grabbed in the script so it does not need to be changed.
+- threshold - The minimum number of samples a cluster must have or else it is removed from the data. The default value is 2 and it can not be lower than 2.
+- test_split - The percentage of data to split into a train-test set. The default value is 0.3 which splits the data into 70% train and 30% test. 
+- epochs - The number of passes through the dataset to train the model. Default is 100.
 
 __Output:__
 
