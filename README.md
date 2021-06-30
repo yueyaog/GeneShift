@@ -43,5 +43,12 @@ __Output:__
 
 The main output of the script is a confusion matrix and an F1 score for each model, these are created in a 'results' directory. The confusion matrix shows how well the trained model classified each sample from the test split. The expected values are on the y-axis and the predicted values are on the x-axis. This matrix is normalized to show a percentage of samples classfied. So if there are five genes in cluster A but the model predicted two of these genes are in cluster B, the cluster A row would could contain a 60 in column A and a 40 in column B. This normalization can be disabled in the confusion matrix function. The F1 scored is written to a text file
 
+__Running:__
+1. Verify all the dependencies are installed in an anaconda virual environment and the correct environment is set in the PBS script
+2. Adjust command line arguments in the PBS script if desired
+   - Additional parameters can be adjusted within the script itsel
+4. Correctly format data move it to the 'data' directory
+5. On a palmetto login node enter the following command to submit the job
+   - ```qsub cluster-sort.pbs``` 
 TODO: Write in insctructions to run script and add dependencies
   
