@@ -1,0 +1,14 @@
+#!/bin/bash
+#PBS -N 02Init
+#PBS -l select=1:ncpus=2:mem=4gb:interconnect=fdr,walltime=72:00:00
+
+
+cd ${PBS_O_WORKDIR}
+# cp outputs from 01-DTWKMeans as 02_DP_GP inputs
+mkdir Inputs
+cp -r /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-K*/*input ${PBS_O_WORKDIR}/Inputs
+mkdir ${PBS_O_WORKDIR}/Inputs/DTW-Loops-Results
+cp /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-K*/*_ClusteringSummary.csv ${PBS_O_WORKDIR}/Inputs/DTW-Loops-Results/
+
+# Create a file with all K values
+ls -d /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW*| awk -F/ '{print $NF}' > ${PBS_O_WORKDIR}/Loops.txt

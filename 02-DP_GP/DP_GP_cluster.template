@@ -1,0 +1,15 @@
+#PBS -N 02dpgp
+#PBS -l select=1:interconnect=hdr:ncpus=20:mem=150gb,walltime=72:00:00
+
+### The purpose of this pbs is to be a Template for 02-DP_GP fine clustering in GeneShift workflow### 
+
+cd ${PBS_O_WORKDIR}
+
+
+module add anaconda3/5.1.0-gcc/8.3.1
+
+source activate DPGP_env
+
+./DP_GP_cluster.py -i /scratch2/yueyaog/02-DP_GP/Inputs/KValDPGP_input/clusterX.txt -o /scratch2/yueyaog/02-DP_GP/KValDPGP_output/clusterX -n 1000 --fast --true_times
+
+
