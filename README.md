@@ -23,13 +23,20 @@ conda create -n GeneShift python=3.6 matplotlib numpy pandas tslearn
 
 conda create -n DP_GP python=2.7 GPy pandas numpy scipy matplotlib
 ```
-Once the two anaconda environments have been created, you will be able to use GeneShift!
-
-After that, simply clone GeneShift repository to use GeneShift
+Once the two anaconda environments have been created, simply clone GeneShift repository to use GeneShift
 ```
 git clone https://github.com/yueyaog/GeneShift.git
 ```
 
+## Input Data
+GeneShift takes ```expression.csv``` of the format:
+|        | time_1 | time_2 | time_3 | ... | time_n |
+|--------|--------|--------|--------|-----|--------|
+| gene_1 |  6.128 |  3.564 |  1.232 | ... |  4.217 |
+| gene_2 |  5.412 |  2.781 |  0.790 | ... |  8.772 |
+| gene_3 |  0.734 |  1.236 |  4.849 | ... |  6.110 |
+|  ...   |  ...   |  ...   |  ...   | ... |  ...   |
+| gene_n |  7.889 |  13.206|  11.192| ... |  9.761 |
 ## Classification
 
 __Overview:__
