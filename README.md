@@ -19,9 +19,9 @@ Two anaconda environments need to created for GeneShift
 ```
 module load anaconda3/5.1.0-gcc/8.3.1
 
-conda create -n GeneShift python=3.6 matplotlib numpy pandas tslearn 
+conda create -n GeneShift_env python=3.6 matplotlib numpy pandas tslearn scikit-learn 
 
-conda create -n DP_GP python=2.7 GPy pandas numpy scipy matplotlib
+conda create -n DPGP_env python=2.7 GPy pandas numpy scipy matplotlib
 ```
 Once the two anaconda environments have been created, simply clone GeneShift repository to use GeneShift
 ```
@@ -30,8 +30,8 @@ git clone https://github.com/yueyaog/GeneShift.git
 
 ## Input Data
 GeneShift takes ```expression.csv``` of the format:
-|        | time_1 | time_2 | time_3 | ... | time_n |
-|--------|--------|--------|--------|-----|--------|
+|               | time_1 | time_2 | time_3 | ... | time_n |
+|---------------|--------|--------|--------|-----|--------|
 | A_gene_1_rep1 |  6.128 |  3.564 |  1.232 | ... |  4.217 |
 | A_gene_1_rep2 |  5.940 |  2.817 |  0.715 | ... |  3.829 |
 | A_gene_1_rep3 |  6.591 |  3.902 |  1.594 | ... |  4.336 |
@@ -39,8 +39,19 @@ GeneShift takes ```expression.csv``` of the format:
 | B_gene_1_rep2 |  6.195 |  2.066 |  0.815 | ... |  8.891 |
 | B_gene_1_rep3 |  5.836 |  3.097 |  0.836 | ... |  9.096 |
 | A_gene_2_rep1 |  0.734 |  1.236 |  4.849 | ... |  6.110 |
-|  ...          |  ...   |  ...   |  ...   | ... |  ...   |
+|      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
+
+where the first row is a header containing the time points and the first column is an index containing ```condition_gene_rep```. Entries are seperated by comma. 
+## Execute the Workflow
+The workflow contains a test gene expression matrix for testing.
+### Prepare Input
+```
+$ qsub 00-PrepareInputs.pbs
+```
+Input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```
+### Initial Clustering (DTW-KMeans)
+
 ## Classification
 
 __Overview:__
