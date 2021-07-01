@@ -22,6 +22,13 @@ The classifcation script sorts clusters using time series data and supervised le
 
 __Dependencies:__
 
+- pandas
+- numpy
+- scikit-learn
+- matplotlib
+- seaborn
+- tensorflow
+
 __Data:__
 
 The script takes a single csv file of RNA expression changes over time. The first row is the header containing the gene column, the different time steps, and the cluster column. The other rows contain the gene, RNA expressions at each time step, and the cluster it belongs to. The csv file must be in the 'data' directory. Multiple csv files can be in this directory and the script will output a results directory for each file. An example is shown below, this example has one feature, the RNA expression, and five time steps.
