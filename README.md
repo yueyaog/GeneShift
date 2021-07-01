@@ -42,9 +42,13 @@ GeneShift takes ```expression.csv``` of the format:
 |      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
 
-where the first row is a header containing the time points and the first column is an index containing ```condition_gene_rep```. Entries are seperated by comma. 
+where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep```. Entries are seperated by comma. 
 ## Execute the Workflow
-The workflow contains a test gene expression matrix for testing.
+The workflow contains a test gene expression matrix for testing. First, user need to execute ```initiate.sh``` to make sure the output from each step will be stored properly.
+```
+$ ./initiate.sh
+```
+
 ### Prepare Input
 ```
 $ qsub 00-PrepareInputs.pbs

@@ -1,4 +1,4 @@
-#!/home/yueyaog/.conda/envs/deep-learning/bin/python3
+#!/usr/bin/env python
 ########################################################################################
 #
 # DTWKmeans.py
