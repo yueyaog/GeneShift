@@ -57,6 +57,4 @@ __Running:__
 4. Correctly format data move it to the 'data' directory
 5. On a palmetto login node enter the following command to submit the job
    - ```qsub cluster-sort.pbs``` 
-
-TODO: Write in insctructions to run script and add dependencies
-  
+ 
