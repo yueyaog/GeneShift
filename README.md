@@ -12,7 +12,23 @@ This workflow is designed to detect pattern change of time-series gene expressio
   5. Using deep learning model(RNN LSTM) to test the robusticity of clustering
   6. Post-clustering analysis (replicate sorting) 
   
+## Installation
+All of GeneShift dependencies can be installed through Anaconda3. The following installation commands are specified to create an Anaconda environment using Clemson's Palmetto cluster. But the dependencies can be easily install to any other HPC system.
 
+Two anaconda environments need to created for GeneShift
+```
+module load anaconda3/5.1.0-gcc/8.3.1
+
+conda create -n GeneShift python=3.6 matplotlib numpy pandas tslearn 
+
+conda create -n DP_GP python=2.7 GPy pandas numpy scipy matplotlib
+```
+Once the two anaconda environments have been created, you will be able to use GeneShift!
+
+After that, simply clone GeneShift repository to use GeneShift
+```
+git clone https://github.com/yueyaog/GeneShift.git
+```
 
 ## Classification
 
