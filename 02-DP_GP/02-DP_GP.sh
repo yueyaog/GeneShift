@@ -29,7 +29,6 @@ do
     do
         jobName=$(echo $j | awk -F/ '{print $NF}')
         qsub -o ${BASEDIR}/Logs/${jobName}.out -e ${BASEDIR}/Logs/${jobName}.err ${j}
-        #qsub $j
     done
 done
 

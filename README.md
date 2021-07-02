@@ -63,6 +63,7 @@ $ ./01-DTWKMeans.sh
 
 ### Fine Clustering (DP_GP_Cluster)
 ```
+$ cd 02-DP_GP/
 $ qsub dpgp_prep.pbs
 $ ./02-DP
 ```
