@@ -1,4 +1,4 @@
-#!/home/yueyaog/.conda/envs/DPGP_env/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 ##############################################################################
 #

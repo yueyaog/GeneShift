@@ -8,7 +8,7 @@ This workflow is designed to detect pattern change of time-series gene expressio
   1. Generate input dataset
   2. Compute initial clustering using [soft-DTW-KMeans](https://arxiv.org/abs/1703.01541)
   3. Compute fine clustering with [DP_GP_cluster](https://github.com/PrincetonUniversity/DP_GP_cluster/tree/master/DP_GP)
-  4. Determine the number of clusters that are optimal for classification
+  4. Determine the optial number of clusters
   5. Using deep learning model(RNN LSTM) to test the robusticity of clustering
   6. Post-clustering analysis (replicate sorting) 
   
@@ -50,11 +50,12 @@ $ ./initiate.sh
 ```
 
 ### Prepare Input
+To avoid noises in gene expression data clustering, input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
 ```
 $ cd 00-DataPrep/
 $ ./00-DataPrep.sh
 ```
-To avoid noises in gene expression data clustering, input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
+
 ### Initial Clustering (DTW-KMeans)
 [Soft-DTW-KMeans](https://arxiv.org/abs/1703.01541) with a range of K values will be appied to the ```OFFremoved_exp.csv```. 
 ```
@@ -72,9 +73,11 @@ $ ./02-DP
 
 ### Choose Optimal K (ch index, db index, silhouette coefficient)
 Three analysis will be used to choose an optimal K value. [Calinski harabasz index](https://doi.org/10.1080/03610927408827101), [silhouette score](https://doi.org/10.1016/0377-0427(87)90125-7), [davies bouldin index](https://doi.org/10.1109/TPAMI.1979.4766909) will be calculated of various K values. The performance of different K values will be visualized in the output plot. 
-- silhouette score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
+- Silhouette score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
 - Calinski harabasz index is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
 - Davies bouldin index closer to zero indicate a better partition.
+
+### Post-clustering analysis (replicate sorting)
 
 
 ## Classification
