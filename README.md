@@ -29,7 +29,7 @@ git clone https://github.com/yueyaog/GeneShift.git
 ```
 
 ## Input Data
-GeneShift takes ```expression.csv``` of the format:
+GeneShift takes ```*_exp.csv``` of the format:
 |               | time_1 | time_2 | time_3 | ... | time_n |
 |---------------|--------|--------|--------|-----|--------|
 | A_gene_1_rep1 |  6.128 |  3.564 |  1.232 | ... |  4.217 |

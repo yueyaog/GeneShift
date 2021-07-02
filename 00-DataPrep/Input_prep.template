@@ -7,4 +7,4 @@ module add anaconda3/5.1.0-gcc/8.3.1
 source activate deep-learning
 
 BASEDIR=$(cat basedir.txt)
-python ${BASEDIR}/00-DataPrep/InputPrep.py -i ${BASEDIR}/Test/Test_exp.csv -o ${BASEDIR}/Test/Test
+python ${BASEDIR}/00-DataPrep/InputPrep.py -i ${BASEDIR}/Input/*_exp.csv -o ${BASEDIR}/Input/Test

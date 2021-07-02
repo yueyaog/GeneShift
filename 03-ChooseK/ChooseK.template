@@ -1,0 +1,12 @@
+#PBS -N 03-2K 
+#PBS -l select=1:ncpus=1:mem=4gb:interconnect=hdr,walltime=72:00:00
+
+
+cd ${PBS_O_WORKDIR}
+
+module add anaconda3/5.1.0-gcc/8.3.1
+
+source activate deep-learning
+BASEDIR=$(cat basedir.txt)
+
+python ${BASEDIR}/03-ChooseK/OptimalK.py -emx ${BASEDIR}/Input/*OFFremoved_exp.csv -i ${BASEDIR} -d ${BASEDIR}/02-DP_GP/

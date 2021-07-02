@@ -10,4 +10,4 @@ module add anaconda3/5.1.0-gcc/8.3.1
 
 source activate deep-learning
 BASEDIR=$(cat basedir.txt)
-python ${BASEDIR}/01-DTWKMeans/DTWKMeans.py -i ${BASEDIR}/Test/Test_OFFremoved_exp.csv -k KX -o ${BASEDIR}/01-DTWKMeans/DTWKMeans/DTW-KKX -p DTW-KKX
+python ${BASEDIR}/01-DTWKMeans/DTWKMeans.py -i ${BASEDIR}/Input/*OFFremoved_exp.csv -k KX -o ${BASEDIR}/01-DTWKMeans/DTWKMeans/DTW-KKX -p DTW-KKX
