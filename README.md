@@ -68,6 +68,8 @@ $ qsub dpgp_prep.pbs
 $ ./02-DP
 ```
 
+### Choose Optimal K (ch index, db index, silhouette score)
+
 ## Classification
 
 __Overview:__
