@@ -6,14 +6,14 @@ This workflow is designed to detect pattern change of time-series gene expressio
 ## Workflow Summary
  GeneShift workflow performs the following tasks:
   1. Generate input dataset
-  2. Compute initial clustering using [DTW-KMeans](https://arxiv.org/abs/1703.01541)
+  2. Compute initial clustering using [soft-DTW-KMeans](https://arxiv.org/abs/1703.01541)
   3. Compute fine clustering with [DP_GP_cluster](https://github.com/PrincetonUniversity/DP_GP_cluster/tree/master/DP_GP)
   4. Determine the number of clusters that are optimal for classification
   5. Using deep learning model(RNN LSTM) to test the robusticity of clustering
   6. Post-clustering analysis (replicate sorting) 
   
 ## Installation
-All of GeneShift dependencies can be installed through Anaconda3. The following installation commands are specified to create an Anaconda environment using Clemson's Palmetto cluster. But the dependencies can be easily install to any other HPC system.
+All of GeneShift dependencies can be installed through Anaconda3. The following installation commands are specified to create Anaconda environments using Clemson's Palmetto cluster. But the dependencies can be easily install to any other HPC system.
 
 Two anaconda environments need to created for GeneShift
 ```
@@ -54,21 +54,28 @@ $ ./initiate.sh
 $ cd 00-DataPrep/
 $ ./00-DataPrep.sh
 ```
-Input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```
+To avoid noises in gene expression data clustering, input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
 ### Initial Clustering (DTW-KMeans)
+[Soft-DTW-KMeans](https://arxiv.org/abs/1703.01541) with a range of K values will be appied to the ```OFFremoved_exp.csv```. 
 ```
 $ cd 01-DTWKMeans/
 $ ./01-DTWKMeans.sh
 ```
 
 ### Fine Clustering (DP_GP_Cluster)
+The initial clustering results will be fine clustered by [Dirichlet process Gaussian process model](https://github.com/PrincetonUniversity/DP_GP_cluster/tree/master/DP_GP).
 ```
 $ cd 02-DP_GP/
 $ qsub dpgp_prep.pbs
 $ ./02-DP
 ```
 
-### Choose Optimal K (ch index, db index, silhouette score)
+### Choose Optimal K (ch index, db index, silhouette coefficient)
+Three analysis will be used to choose an optimal K value. [Calinski harabasz index](https://doi.org/10.1080/03610927408827101), [silhouette score](https://doi.org/10.1016/0377-0427(87)90125-7), [davies bouldin index](https://doi.org/10.1109/TPAMI.1979.4766909) will be calculated of various K values. The performance of different K values will be visualized in the output plot. 
+- silhouette score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
+- Calinski harabasz index is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
+- Davies bouldin index closer to zero indicate a better partition.
+
 
 ## Classification
 
