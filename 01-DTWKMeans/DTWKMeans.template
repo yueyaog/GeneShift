@@ -1,5 +1,5 @@
 #PBS -N 01DTWKM
-#PBS -l select=1:ncpus=4:mem=4gb:interconnect=hdr,walltime=72:00:00
+#PBS -l select=1:ncpus=2:mem=4gb:interconnect=hdr,walltime=72:00:00
 
 
 ### The purpose of this pbs is to be a Template for DTW KMeans Cluster###
@@ -9,4 +9,5 @@ cd ${PBS_O_WORKDIR}
 module add anaconda3/5.1.0-gcc/8.3.1
 
 source activate deep-learning
-python DTWKMeans.py -i /scratch2/yueyaog/Test/Test_OFFremoved_exp.csv -k KX -o /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-KKX -p DTW-KKX
+BASEDIR=$(cat basedir.txt)
+python ${BASEDIR}/01-DTWKMeans/DTWKMeans.py -i ${BASEDIR}/Test/Test_OFFremoved_exp.csv -k KX -o ${BASEDIR}/01-DTWKMeans/DTWKMeans/DTW-KKX -p DTW-KKX

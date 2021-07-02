@@ -4,6 +4,7 @@ BASEDIR=$(pwd)
 
 mkdir -p ${BASEDIR}/DTWKMeans/PBS
 mkdir -p ${BASEDIR}/DTWKMeans/Logs
+cp ${BASEDIR}/basedir.txt ${BASEDIR}/DTWKMeans/PBS/
 
 cp ${BASEDIR}/DTWKMeans.py ${BASEDIR}/DTWKMeans/PBS
 

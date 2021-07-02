@@ -10,5 +10,5 @@ cp -r /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-K*/*input ${PBS_O_WORKDIR}/In
 mkdir ${PBS_O_WORKDIR}/Inputs/DTW-Loops-Results
 cp /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-K*/*_ClusteringSummary.csv ${PBS_O_WORKDIR}/Inputs/DTW-Loops-Results/
 
-# Create a file with all K values
+# Create a file with all K values for loop submission
 ls -d /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW*| awk -F/ '{print $NF}' > ${PBS_O_WORKDIR}/Loops.txt

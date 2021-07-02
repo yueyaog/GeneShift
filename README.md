@@ -42,7 +42,7 @@ GeneShift takes ```expression.csv``` of the format:
 |      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
 
-where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep```. Entries are seperated by comma. 
+where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. 
 ## Execute the Workflow
 The workflow contains a test gene expression matrix for testing. First, user need to execute ```initiate.sh``` to make sure the output from each step will be stored properly.
 ```
@@ -51,10 +51,21 @@ $ ./initiate.sh
 
 ### Prepare Input
 ```
-$ qsub 00-PrepareInputs.pbs
+$ cd 00-DataPrep/
+$ ./00-DataPrep.sh
 ```
 Input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```
 ### Initial Clustering (DTW-KMeans)
+```
+$ cd 01-DTWKMeans/
+$ ./01-DTWKMeans.sh
+```
+
+### Fine Clustering (DP_GP_Cluster)
+```
+$ qsub dpgp_prep.pbs
+$ ./02-DP
+```
 
 ## Classification
 
