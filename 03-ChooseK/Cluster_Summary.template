@@ -1,5 +1,5 @@
 #PBS -N 03-1Comp
-#PBS -l select=1:ncpus=2:mem=4gb:interconnect=fdr,walltime=72:00:00
+#PBS -l select=1:ncpus=1:mem=4gb:interconnect=hdr,walltime=72:00:00
 
 
 cd ${PBS_O_WORKDIR}

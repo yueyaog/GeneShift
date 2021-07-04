@@ -53,4 +53,4 @@ for i in range(1,args.Kval+1):
         val = 'DTW-K{}-{}-DPGP{}'.format(str(args.Kval),str(i).rjust(3,'0'),str(index).rjust(3,'0'))
         ClusterDict[key] = val
         DTWDPGP_Results_df['Cluster'] = DTWDPGP_Results_df.index.map(ClusterDict.get)
-        DTWDPGP_Results_df.to_csv('03-ChooseK/ClusterSumPBS/DTW-K{}-DPGP_ResultsSum.csv'.format(str(args.Kval)))
+        DTWDPGP_Results_df.to_csv('03-ChooseK/ClusterSummary/DTW-K{}-DPGP_ResultsSum.csv'.format(str(args.Kval)))
