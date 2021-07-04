@@ -16,6 +16,7 @@ import pandas as pd
 import numpy as np
 import os
 import matplotlib.pyplot as plt 
+import argparse
 from sklearn.metrics import silhouette_samples, silhouette_score, calinski_harabasz_score,davies_bouldin_score
 ########################################################################################
 #
@@ -37,7 +38,7 @@ args = parser.parse_args()
 ##########################################################################################
 #Load the expression file and the location of DPGP clustering results
 os.chdir(args.inputdir)
-DTW_DPGP_output = '03-ChooseK/ClusterSumPBS/DTW-K{}-DPGP_ResultsSum.csv'
+DTW_DPGP_output = '03-ChooseK/ClusterSummary/DTW-K{}-DPGP_ResultsSum.csv'
 GEMinput_df = pd.read_csv(args.gene_expression_matrix,index_col=[0])
 GEM_arr = GEMinput_df.values
 print('Input Gene Expression Matrix has {} entries with {} time points'.format(GEM_arr.shape[0],GEM_arr.shape[1]))
