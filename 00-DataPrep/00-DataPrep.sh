@@ -1,3 +1,5 @@
+#!/bin/bash
+
 BASEDIR=$(pwd)
 mkdir $BASEDIR/Logs
 
