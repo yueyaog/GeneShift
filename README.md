@@ -72,7 +72,12 @@ $ ./02-DP
 ```
 
 ### Choose Optimal K (ch index, db index, silhouette coefficient)
-Three analysis will be used to choose an optimal K value. [Calinski harabasz index](https://doi.org/10.1080/03610927408827101), [silhouette score](https://doi.org/10.1016/0377-0427(87)90125-7), [davies bouldin index](https://doi.org/10.1109/TPAMI.1979.4766909) will be calculated of various K values. The performance of different K values will be visualized in the output plot. 
+Before determine the optimal K from a range of k values we tested, the clustering results (01-DTWKMeans and 02-DP-GP) need to be compiled.
+```
+$ cd 03-ChooseK
+$ ./03-1-ClusterSum.sh
+```
+Once the clustering results are being summarized into several csv files,three analysis will be used to choose an optimal K value. [Calinski harabasz index](https://doi.org/10.1080/03610927408827101), [silhouette score](https://doi.org/10.1016/0377-0427(87)90125-7), [davies bouldin index](https://doi.org/10.1109/TPAMI.1979.4766909) will be calculated of various K values. The performance of different K values will be visualized in the output plot. 
 - Silhouette score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
 - Calinski harabasz index is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
 - Davies bouldin index closer to zero indicate a better partition.
