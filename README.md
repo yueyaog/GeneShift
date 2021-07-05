@@ -82,9 +82,16 @@ Once the clustering results are being summarized into several csv files, three a
 - Calinski harabasz index is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
 - Davies bouldin index closer to zero indicate a better partition.
 
+For example, we choosed ```DTW_n_cluster```=50 based on the results in the following figure. Calinski harabasz index is the highest among all cluster size, David bouldin index is relatively lower compare with most others, silhouette score is relatively higher compare with most others. 
+
+![Image of PERFS](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/Clustering_PERFS.png)
+
 ### Post-clustering analysis (replicate sorting)
 
-
+```
+$ cd 04-DetectShift
+$ ./04-1ClusterShift.sh
+```
 ## Classification
 
 __Overview:__
