@@ -88,8 +88,9 @@ For example, we choosed ```DTW_n_cluster```=50 based on the results in the follo
 
 ### Post-clustering analysis (replicate sorting)
 
+To conduct post-clustering analysis, execute 04-1ClusterShift script and provide the optimal K value as argument:
 ```
-$ cd 04-DetectShift
+$ cd 04-DetectShift $OPTIMAL_K
 $ ./04-1ClusterShift.sh
 ```
 ## Classification

@@ -11,5 +11,5 @@ BASEDIR=$(cat basedir.txt)
 
 
 # Plot the optimal cluster results
-python ${BASEDIR}/04-DetectShift/Clusters_plot.py -exm ${BASEDIR}/Input/*OFFremoved_exp.csv  -c ${BASEDIR}/03-ChooseK/ClusterSummary/DTW-K40-DPGP_ResultsSum.csv -o ${BASEDIR}/04-DetectShift/OptimalK/ClusterPlots/Test
+python ${BASEDIR}/04-DetectShift/Clusters_plot.py -exm ${BASEDIR}/Input/*OFFremoved_exp.csv  -c ${BASEDIR}/03-ChooseK/ClusterSummary/DTW-KX-DPGP_ResultsSum.csv -o ${BASEDIR}/04-DetectShift/OptimalKX/ClusterPlots/Test
 
