@@ -42,7 +42,7 @@ GeneShift takes ```*_exp.csv``` of the format:
 |      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
 
-where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. 
+where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp.csv``` to GeneShift workflow. 
 ## Execute the Workflow
 The workflow contains a test gene expression matrix for testing. First, user need to execute ```initiate.sh``` to make sure the output from each step will be stored properly.
 ```
@@ -93,6 +93,7 @@ To conduct post-clustering analysis, execute 04-1ClusterShift script and provide
 $ cd 04-DetectShift 
 $ ./04-1ClusterShift.sh $OPTIMAL_K
 ```
+
 ## Classification
 
 __Overview:__
