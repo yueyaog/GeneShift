@@ -93,6 +93,11 @@ To conduct post-clustering analysis, execute 04-1ClusterShift script and provide
 $ cd 04-DetectShift 
 $ ./04-1ClusterShift.sh $OPTIMAL_K
 ```
+To visualize the results of Cluster Shift, execute the following command. 
+```
+$ ./04-2ClusterShift_Visu.sh $OPTIMAL_K
+```
+Examples of gene expression trajectories by GeneShift:
 
 ## Classification
 
