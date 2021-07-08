@@ -98,7 +98,7 @@ To visualize the results of Cluster Shift, execute the following command.
 $ ./04-2ClusterShift_Visu.sh $OPTIMAL_K
 ```
 Examples of gene expression trajectories by GeneShift:
-
+![Image of trajectory](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/Trajectory_examples.png)
 ## Classification
 
 __Overview:__
