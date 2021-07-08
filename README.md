@@ -138,7 +138,7 @@ The main output of the script is a confusion matrix and an F1 score for each mod
 __Running:__
 1. Verify all the dependencies are installed in an anaconda virual environment and the correct environment is set in the PBS script
 2. Adjust command line arguments in the PBS script if desired
-   - Additional parameters can be adjusted within the script itsel
+   - Additional parameters can be adjusted within the script itself
 4. Correctly format data move it to the 'data' directory
 5. On a palmetto login node enter the following command to submit the job
    - ```qsub cluster-sort.pbs``` 
