@@ -1,0 +1,25 @@
+#PBS -N 042Clst 
+#PBS -l select=1:ncpus=1:mem=4gb:interconnect=hdr,walltime=72:00:00
+
+
+cd ${PBS_O_WORKDIR}
+
+module add anaconda3/5.1.0-gcc/8.3.1
+
+source activate deep-learning
+
+BASEDIR=$(cat basedir.txt) 
+
+echo "Plot GeneShift Results (replicate threshold 3)" 
+echo "----------------------------------------------"
+python ${BASEDIR}/04-DetectShift/ClusterShift_plot.py -exm ${BASEDIR}/Input/*_exp_rep.csv \
+-c ${BASEDIR}/04-DetectShift/OptimalKX/REP3/ClusterShiftREP3_DTW_DPGP_ClusterShift.csv \
+-s ${BASEDIR}/04-DetectShift/OptimalKX/REP3/ClusterShiftREP3ClusterShift_Summary.csv \
+-o ${BASEDIR}/04-DetectShift/OptimalKX/GeneShift_Plots/REP3
+
+echo "Plot GeneShift Results (replicate threshold 2)" 
+echo "----------------------------------------------"
+python ${BASEDIR}/04-DetectShift/ClusterShift_plot.py -exm ${BASEDIR}/Input/*_exp_rep.csv \
+-c ${BASEDIR}/04-DetectShift/OptimalKX/REP2/ClusterShiftREP2_DTW_DPGP_ClusterShift.csv \
+-s ${BASEDIR}/04-DetectShift/OptimalKX/REP2/ClusterShiftREP2ClusterShift_Summary.csv \
+-o ${BASEDIR}/04-DetectShift/OptimalKX/GeneShift_Plots/REP2
