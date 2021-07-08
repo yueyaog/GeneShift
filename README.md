@@ -29,7 +29,7 @@ git clone https://github.com/yueyaog/GeneShift.git
 ```
 
 ## Input Data
-GeneShift takes ```*_exp.csv``` of the format:
+GeneShift takes ```*_exp_rep.csv``` of the format:
 |               | time_1 | time_2 | time_3 | ... | time_n |
 |---------------|--------|--------|--------|-----|--------|
 | A_gene_1_rep1 |  6.128 |  3.564 |  1.232 | ... |  4.217 |
@@ -42,7 +42,7 @@ GeneShift takes ```*_exp.csv``` of the format:
 |      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
 
-where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp.csv``` to GeneShift workflow. 
+where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp_rep.csv``` to GeneShift workflow. 
 ## Execute the Workflow
 The workflow contains a test gene expression matrix for testing. First, user need to execute ```initiate.sh``` to make sure the output from each step will be stored properly.
 ```
