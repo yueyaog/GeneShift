@@ -57,7 +57,7 @@ $ ./00-DataPrep.sh
 ```
 
 ### Initial Clustering (DTW-KMeans)
-[Soft-DTW-KMeans](https://arxiv.org/abs/1703.01541) with a range of K values will be appied to the ```OFFremoved_exp.csv```. Provide the values of Kmin, Kmax, and step size. 
+[Soft-DTW-KMeans](https://arxiv.org/abs/1703.01541) with a range of K values will be appied to the ```OFFremoved_exp.csv```. Provide the values of K<sub>min</sub>, K<sub>max</sub>, and step size to set up a range of K values. 
 ```
 $ cd 01-DTWKMeans/
 $ ./01-DTWKMeans.sh $Kmin $Kmax $StepSize
