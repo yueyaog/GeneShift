@@ -10,6 +10,15 @@ source activate deep-learning
 BASEDIR=$(cat basedir.txt) 
 
 
-# Plot the optimal cluster results
+echo "Plot the optimal cluster results"
+echo "---------------------------------"
 python ${BASEDIR}/04-DetectShift/Clusters_plot.py -exm ${BASEDIR}/Input/*OFFremoved_exp.csv  -c ${BASEDIR}/03-ChooseK/ClusterSummary/DTW-KX-DPGP_ResultsSum.csv -o ${BASEDIR}/04-DetectShift/OptimalKX/ClusterPlots/Test
 
+echo "Detect the shift under condition A and condition B"
+echo "--------------------------------------------------"
+echo "Replicate threshold 3" 
+echo "---------------------"
+python ${BASEDIR}/04-DetectShift/Cluster_change.py -r 3 -off ${BASEDIR}/Input/*OFF_exp.csv -c ${BASEDIR}/03-ChooseK/ClusterSummary/DTW-KX-DPGP_ResultsSum.csv -o ${BASEDIR}/04-DetectShift/OptimalKX/REP3/ClusterShiftREP3
+echo "Replicate threshold 2" 
+echo "---------------------"
+python ${BASEDIR}/04-DetectShift/Cluster_change.py -r 2 -off ${BASEDIR}/Input/*OFF_exp.csv -c ${BASEDIR}/03-ChooseK/ClusterSummary/DTW-KX-DPGP_ResultsSum.csv -o ${BASEDIR}/04-DetectShift/OptimalKX/REP2/ClusterShiftREP2

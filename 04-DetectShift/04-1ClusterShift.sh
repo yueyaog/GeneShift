@@ -2,11 +2,14 @@
 
 BASEDIR=$(pwd)
 
+OPTIMAL_K=$1
 
-mkdir -p ${BASEDIR}/OptimalK$1/ClusterPlots
-mkdir -p ${BASEDIR}/OptimalK$1/Logs
-mkdir -p ${BASEDIR}/OptimalK$1/PBS
+mkdir -p ${BASEDIR}/OptimalK$OPTIMAL_K/ClusterPlots
+mkdir -p ${BASEDIR}/OptimalK$OPTIMAL_K/Logs
+mkdir -p ${BASEDIR}/OptimalK$OPTIMAL_K/PBS
+mkdir -p ${BASEDIR}/OptimalK$OPTIMAL_K/REP2
+mkdir -p ${BASEDIR}/OptimalK$OPTIMAL_K/REP3
 
-cat ${BASEDIR}/ClusterShift.template | sed s/KX/K$1/g > ${BASEDIR}/OptimalK$1/PBS/04-1ClusterShift.pbs
+cat ${BASEDIR}/ClusterShift.template | sed s/KX/K$OPTIMAL_K/g > ${BASEDIR}/OptimalK$OPTIMAL_K/PBS/04-1ClusterShift.pbs
 
-qsub -o ${BASEDIR}/OptimalK$1/Logs/04-1ClusterShift.out -e ${BASEDIR}/OptimalK$1/Logs/04-1ClusterShift.err ${BASEDIR}/OptimalK$1/PBS/04-1ClusterShift.pbs
+qsub -o ${BASEDIR}/OptimalK$OPTIMAL_K/Logs/04-1ClusterShift.out -e ${BASEDIR}/OptimalK$OPTIMAL_K/Logs/04-1ClusterShift.err ${BASEDIR}/OptimalK$OPTIMAL_K/PBS/04-1ClusterShift.pbs
