@@ -2,13 +2,17 @@
  
 BASEDIR=$(pwd)
 
+Kmin=$1
+Kmax=$2
+StepSize=$3
+
 mkdir -p ${BASEDIR}/DTWKMeans/PBS
 mkdir -p ${BASEDIR}/DTWKMeans/Logs
 cp ${BASEDIR}/basedir.txt ${BASEDIR}/DTWKMeans/PBS/
 
 cp ${BASEDIR}/DTWKMeans.py ${BASEDIR}/DTWKMeans/PBS
 
-for i in {10..50..5} ; do cat ${BASEDIR}/DTWKMeans.template | sed s/KX/${i}/g > ${BASEDIR}/DTWKMeans/PBS/K${i}.DTWKMeans.pbs ; done
+for i in {$Kmin..$Kmax..$StepSize} ; do cat ${BASEDIR}/DTWKMeans.template | sed s/KX/${i}/g > ${BASEDIR}/DTWKMeans/PBS/K${i}.DTWKMeans.pbs ; done
 
 cd ${BASEDIR}/DTWKMeans/PBS
 
