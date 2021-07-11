@@ -12,7 +12,7 @@ cp ${BASEDIR}/basedir.txt ${BASEDIR}/DTWKMeans/PBS/
 
 cp ${BASEDIR}/DTWKMeans.py ${BASEDIR}/DTWKMeans/PBS
 
-for i in {$Kmin..$Kmax..$StepSize} ; do cat ${BASEDIR}/DTWKMeans.template | sed s/KX/${i}/g > ${BASEDIR}/DTWKMeans/PBS/K${i}.DTWKMeans.pbs ; done
+for i in {$Kmin..$Kmax..$StepSize} ; do cat ${BASEDIR}/DTWKMeans.pbs.template | sed s/KX/${i}/g > ${BASEDIR}/DTWKMeans/PBS/K${i}.DTWKMeans.pbs ; done
 
 cd ${BASEDIR}/DTWKMeans/PBS
 

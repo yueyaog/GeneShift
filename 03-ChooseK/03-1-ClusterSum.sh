@@ -2,6 +2,10 @@
  
 BASEDIR=$(pwd)
 
+Kmin=$1
+Kmax=$2
+StepSize=$3
+
 mkdir -p ${BASEDIR}/ClusterSummary/Logs
 mkdir -p ${BASEDIR}/ClusterSummary/PBS
 
@@ -9,7 +13,7 @@ cp ${BASEDIR}/Cluster_Compile.py ${BASEDIR}/ClusterSummary/PBS
 
 cp ${BASEDIR}/basedir.txt ${BASEDIR}/ClusterSummary/PBS
 
-for i in {10..50..5} ; do cat ${BASEDIR}/Cluster_Summary.template | sed s/KX/${i}/g > ${BASEDIR}/ClusterSummary/PBS/K${i}.Cluster_Sum.pbs ; done
+for i in {Kmin..Kmax..StepSize} ; do cat ${BASEDIR}/Cluster_Summary.pbs.template | sed s/KX/${i}/g > ${BASEDIR}/ClusterSummary/PBS/K${i}.Cluster_Sum.pbs ; done
 
 cd ${BASEDIR}/ClusterSummary/PBS
 

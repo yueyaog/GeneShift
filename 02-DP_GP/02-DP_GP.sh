@@ -18,7 +18,7 @@ done
 for i in `cat ${BASEDIR}/Loops.txt`
 do
     for j in `cat ${BASEDIR}/PBS/${i}-PBS/${i}-Clusters-List.txt`
-    do cat ${BASEDIR}/DP_GP_cluster.template | sed s/KVal/${i}/g | sed s/clusterX/DTW-Cluster${j}/g > ${BASEDIR}/PBS/${i}-PBS/${i}_Cluster${j}.DPGP.pbs
+    do cat ${BASEDIR}/DP_GP_cluster.pbs.template | sed s/KVal/${i}/g | sed s/clusterX/DTW-Cluster${j}/g > ${BASEDIR}/PBS/${i}-PBS/${i}_Cluster${j}.DPGP.pbs
     done
 done
 
