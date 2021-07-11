@@ -4,11 +4,12 @@
 
 
 cd ${PBS_O_WORKDIR}
+BASEDIR=$(cat basedir.txt)
 # cp outputs from 01-DTWKMeans as 02_DP_GP inputs
 mkdir Inputs
-cp -r /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-K*/*input ${PBS_O_WORKDIR}/Inputs
-mkdir ${PBS_O_WORKDIR}/Inputs/DTW-Loops-Results
-cp /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW-K*/*_ClusteringSummary.csv ${PBS_O_WORKDIR}/Inputs/DTW-Loops-Results/
+cp -r ${BASEDIR}/01-DTWKMeans/DTWKMeans/DTW-K*/*input ${BASEDIR}/02-DP_GP/Inputs
+mkdir ${BASEDIR}/02-DP_GP/Inputs/DTW-Loops-Results
+cp ${BASEDIR}/01-DTWKMeans/DTWKMeans/DTW-K*/*_ClusteringSummary.csv ${BASEDIR}/02-DP_GP/Inputs/DTW-Loops-Results/
 
 # Create a file with all K values for loop submission
-ls -d /scratch2/yueyaog/01-DTWKMeans/DTWKMeans/DTW*| awk -F/ '{print $NF}' > ${PBS_O_WORKDIR}/Loops.txt
+ls -d ${BASEDIR}/01-DTWKMeans/DTWKMeans/DTW*| awk -F/ '{print $NF}' > ${BASEDIR}/02-DP_GP/Loops.txt
