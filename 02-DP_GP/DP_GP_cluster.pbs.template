@@ -1,5 +1,5 @@
 #PBS -N 02dpgp
-#PBS -l select=1:interconnect=hdr:ncpus=20:mem=150gb,walltime=72:00:00
+#PBS -l select=1:interconnect=hdr:ncpus=20:mem=300gb,walltime=72:00:00
 
 ### The purpose of this pbs is to be a Template for 02-DP_GP fine clustering in GeneShift workflow### 
 

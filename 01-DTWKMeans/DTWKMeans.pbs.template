@@ -1,5 +1,5 @@
 #PBS -N 01DTWKM
-#PBS -l select=1:ncpus=2:mem=4gb:interconnect=hdr,walltime=72:00:00
+#PBS -l select=1:ncpus=2:mem=8gb:interconnect=hdr,walltime=72:00:00
 
 
 ### The purpose of this pbs is to be a Template for DTW KMeans Cluster###
