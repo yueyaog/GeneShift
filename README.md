@@ -50,7 +50,7 @@ $ ./initiate.sh
 ```
 
 ### Prepare Input
-To avoid noises in gene expression data clustering, input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
+To avoid noises in gene expression data clustering, input data will be separated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
 ```
 $ cd 00-DataPrep/
 $ ./00-DataPrep.sh
