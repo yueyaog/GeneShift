@@ -68,7 +68,7 @@ The initial clustering results will be fine clustered by [Dirichlet process Gaus
 ```
 $ cd 02-DP_GP/
 $ qsub dpgp_prep.pbs
-$ ./02-DP
+$ ./02-DP.sh
 ```
 
 ### Choose Optimal K (ch index, db index, silhouette coefficient)
