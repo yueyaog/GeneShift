@@ -50,7 +50,7 @@ $ ./initiate.sh
 ```
 
 ### Prepare Input
-To avoid noises in gene expression data clustering, input data will be seperated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
+To avoid noises in gene expression data clustering, input data will be separated into ```OFF_exp.csv``` and ```OFFremoved_exp.csv```. Clustering will only be performed on ```OFFremoved_exp.csv``` . ```OFF_exp.csv``` will be analyzed in post-clustering analysis.
 ```
 $ cd 00-DataPrep/
 $ ./00-DataPrep.sh
@@ -68,7 +68,7 @@ The initial clustering results will be fine clustered by [Dirichlet process Gaus
 ```
 $ cd 02-DP_GP/
 $ qsub dpgp_prep.pbs
-$ ./02-DP
+$ ./02-DP.sh
 ```
 
 ### Choose Optimal K (ch index, db index, silhouette coefficient)
@@ -78,9 +78,9 @@ $ cd 03-ChooseK
 $ ./03-1-ClusterSum.sh $Kmin $Kmax $StepSize
 ```
 Once the clustering results are being summarized into several csv files, three analysis will be used to choose an optimal K value. [Calinski harabasz index](https://doi.org/10.1080/03610927408827101), [silhouette score](https://doi.org/10.1016/0377-0427(87)90125-7), [davies bouldin index](https://doi.org/10.1109/TPAMI.1979.4766909) will be calculated of various K values. The performance of different K values will be visualized in the output plot. 
-- Silhouette score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
-- Calinski harabasz index is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
 - Davies bouldin index closer to zero indicate a better partition.
+- Calinski harabasz index is higher when clusters are dense and well separated, which relates to a standard concept of a cluster.
+- Silhouette score is bounded between -1 for incorrect clustering and +1 for highly dense clustering. Scores around zero indicate overlapping clusters.
 
 To choose the optimal K value
 ```
