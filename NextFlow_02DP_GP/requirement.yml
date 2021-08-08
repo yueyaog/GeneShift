@@ -1,0 +1,7 @@
+language: python
+python:
+  - "2.7"
+install: 
+    - conda install pandas numpy scipy matplotlib cython scikit-learn
+    - pip install GPy
+
