@@ -28,19 +28,16 @@ input_gems = Channel.fromPath("${params.input.dir}/${params.input.gem_files}")
 
 process DP_GP {
     publishDir "${params.output.dir}"
-    conda '~/.conda/envs/DPGP_env'
 
     input:
         file gem from input_gems
 
     script:
     """
-    iteration=1000
-
     python \${DP_GP_PATH}/DP_GP_cluster.py\
             -i \${gem} \
             -o \${gem.baseName} \
-            -n \${iteration} \
+            -n \${params.iteration} \
             --fast \
             --true_times
     """
