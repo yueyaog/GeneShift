@@ -1,6 +1,6 @@
 println """\
 =================================
- K I N C - N F   P I P E L I N E
+GENESHIFT   P I P E L I N E
 =================================
 
 Workflow Information:
@@ -30,14 +30,16 @@ process DP_GP {
     publishDir "${params.output.dir}"
 
     input:
-        file gem from input_gems
+    file gem from input_gems
 
     script:
     """
-    python DP_GP_cluster.py\
-            -i \${gem} \
-            -o \${gem.baseName} \
-            -n \${params.iteration} \
+    module load anaconda3/5.1.0-gcc 
+    source activate ${params.conda_env}
+    python ${DPGP_PATH}/DP_GP_cluster.py\
+            -i ${gem} \
+            -o ${gem.baseName} \
+            -n ${params.iteration} \
             --fast \
             --true_times
     """
