@@ -34,7 +34,7 @@ process DP_GP {
 
     script:
     """
-    python \${DP_GP_PATH}/DP_GP_cluster.py\
+    python DP_GP_cluster.py\
             -i \${gem} \
             -o \${gem.baseName} \
             -n \${params.iteration} \
