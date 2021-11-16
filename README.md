@@ -19,7 +19,14 @@ Two anaconda environments need to created for GeneShift
 ```
 module load anaconda3/5.1.0-gcc/8.3.1
 
-conda create -n GeneShift_env python=3.6 matplotlib numpy pandas tslearn scikit-learn 
+conda create -n GeneShift_env python=3.6 matplotlib numpy pandas scikit-learn 
+
+# tslearn needs to be installed separately.
+source activate GeneShift_env
+
+conda install -c conda-forge tslearn
+
+source deactivate
 
 conda create -n DPGP_env python=2.7 GPy pandas numpy scipy matplotlib
 ```
