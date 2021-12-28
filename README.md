@@ -32,6 +32,8 @@ conda create -n DPGP_env python=2.7 GPy pandas numpy scipy matplotlib
 ```
 Once the two anaconda environments have been created, simply clone GeneShift repository to use GeneShift
 ```
+module load git/2.27.0-gcc/8.3.1
+
 git clone https://github.com/yueyaog/GeneShift.git
 ```
 
