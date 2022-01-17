@@ -10,6 +10,6 @@ module add anaconda3/5.1.0-gcc/8.3.1
 
 source activate DPGP_env
 BASEDIR=$(cat basedir.txt)
-./DP_GP_cluster.py -i ${BASEDIR}/02-DP_GP/Inputs/KValDPGP_input/clusterX.txt -o ${BASEDIR}/02-DP_GP/KValDPGP_output/clusterX -n 1000 --fast --true_times
+./DP_GP_cluster.py -i ${BASEDIR}/02-DP_GP/Inputs/KValDPGP_input/*clusterX.txt -o ${BASEDIR}/02-DP_GP/KValDPGP_output/clusterX -n 1000 --fast --true_times
 
 

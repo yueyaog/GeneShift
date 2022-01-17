@@ -100,7 +100,7 @@ DTWclusterlist = list(set(df_label['cluster'].tolist()))
 for i in DTWclusterlist:
     ClusterGenelist = df_label[df_label['cluster'] == i]['gene'].tolist()
     Cluster_expdf = exp_df.reindex(ClusterGenelist)
-    Cluster_expdf.to_csv('DTW-Cluster{}.txt'.format(i),sep='\t')
+    Cluster_expdf.to_csv(args.output_file_prefix+'-Cluster{}.txt'.format(i),sep='\t')
 
 
 # Time Set for plotting
