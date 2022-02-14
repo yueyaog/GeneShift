@@ -1,0 +1,12 @@
+### The purpose of this script is to be a template for DTW KMeans clustering submission###
+
+cd ${PBS_O_WORKDIR}
+
+module add anaconda3/5.1.0-gcc/8.3.1
+
+source activate deep-learning
+
+BINDIR=$(cat bin_dir.txt)
+WORKDIR=$(cat workdir.txt)
+
+python ${BINDIR}/DTWKMeans.py -i ${WORKDIR}/*OFFremoved_exp.csv -k KX -o ${WORKDIR}/DTWKMeans/DTW-KKX -p DTW-KKX
