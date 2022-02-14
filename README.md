@@ -51,9 +51,22 @@ GeneShift takes ```*_exp_rep.csv``` of the format:
 |      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
 
-where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp_rep.csv``` to GeneShift workflow. 
+where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp_rep.csv``` to GeneShift workflow. GeneShift contains a test gene expression matrix for testing purpose. 
+
 ## Execute the Workflow
-The workflow contains a test gene expression matrix for testing. First, user need to execute ```initiate.sh``` to make sure the output from each step will be stored properly.
+
+### Running GeneShift Nextflow Pipeline
+Now, you can run GeneShift as a Nextflow pipeline. It is way easier than executing all the shell scripts one by one and 'babysitting' the submission processes for each task. Instead, you can execute the entire workflow with a single command. The following command will run the example data ```Test_exp_rep.csv``` with K range from 5 to 40. This command is specific to PBS scheduler on Clemson palmetto cluster. It can generalize to any HPC system by adding few modifications in ```nextflow.config```. Although you don't need to run the python script directly, you may want to refer to the following documentation to familiarize yourself with the details of GeneShift workflow.
+
+```
+nextflow run main.nf -profile palmetto  --gem_file Test_exp_rep.csv --data_prefix Test --Kmin 5 --Kmax 40  
+```
+
+
+
+### Running GeneShift Python Script Directly
+
+First, user need to execute ```initiate.sh``` to make sure the output from each step will be stored properly.
 ```
 $ ./initiate.sh
 ```
@@ -95,9 +108,16 @@ To choose the optimal K value
 ```
 $ ./03-2-ChooseK.sh
 ```
-For example, we choosed ```DTW_n_cluster```=50 based on the results in the following figure. Calinski harabasz index is the highest among all cluster size, David bouldin index is relatively lower compare with most others, silhouette score is relatively higher compare with most others. 
+For example, we choosed ```DTW_n_cluster```=37 based on the results in the following figure. Calinski harabasz index is the highest among all cluster size, David bouldin index is relatively lower compare with most others, silhouette score is relatively higher compare with most others. 
 
-![Image of PERFS](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/Clustering_PERFS.png)
+![Image of PERFS](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/DTW-DPGP_diffKs_PERFs.png)
+
+If you executing GeneShift nextflow pipeline, the updated script can compute the optimal K value based on the rank of the results from the three statistical tests. You can bypass the setting by modify ```Output/OptimalK/Optimal_K_value.txt```. And resume the nextflow pipeline by the following command. 
+
+```
+nextflow run main.nf -profile palmetto -resume
+```
+
 
 ### Post-clustering analysis (replicate sorting)
 
@@ -110,8 +130,10 @@ To visualize the results of Cluster Shift, execute the following command.
 ```
 $ ./04-2ClusterShift_Visu.sh $OPTIMAL_K
 ```
-Examples of gene expression trajectories by GeneShift:
-![Image of trajectory](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/Trajectory_examples.png)
+GeneShift offers two ways of visualizing the output: box-point plot and basic line plot. You can observe the expression of replicates better in basic line plot than box-point plot.  
+
+![Image of BoxLine Plot](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/BxPt_FPKM_TrajecotrySet_A_DTW-K37-017-DPGP001_B_DTW-K37-017-DPGP001.png)
+![Image of BasicLine Plot](https://github.com/yueyaog/GeneShift/blob/master/Auxiliary/LnPt_FPKM_TrajecotrySet_A_DTW-K37-017-DPGP001_B_DTW-K37-017-DPGP001.png)
 ## Classification
 
 __Overview:__
