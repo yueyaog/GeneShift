@@ -18,6 +18,7 @@ input:
     gem_file: ${params.gem_file}
     Kmin: ${params.Kmin}
     Kmax: ${params.Kmax}
+    StepSize: ${params.StepSize}
     iteration: ${params.iteration}
     
 
@@ -29,7 +30,9 @@ input:
 
 
 
-workflow {
+workflow {  // Create a K range list 
+            def emptyList = []
+            params.Kmin.step(params.Kmax, params.StepSize){emptyList.add("$it")}
             //Load Input
             gem_files = Channel.fromList([ params.gem_file ])
             
@@ -39,7 +42,7 @@ workflow {
            off_removed_gem_file = data_prep.out.off_removed_gem_file
            
            //Perform Initial Clustering Using DTWKMeans
-           ch = Channel.from(params.Kmin..params.Kmax)   
+           ch = Channel.fromList(emptyList)   
            DTWKMeans(off_removed_gem_file, ch)
            DTW_Clustered_files = DTWKMeans.out.DTW_Clustered_files
            
@@ -49,7 +52,7 @@ workflow {
            DPGP_Clustered_files = DP_GP.out.DPGP_Clustered_files.collect()
            
            //Compiling Clustering Results for Each K Value
-           k = Channel.from(params.Kmin..params.Kmax) 
+           k = Channel.fromList(emptyList) 
            Compile(k,off_removed_gem_file,DPGP_Clustered_files)
            Compiled_Clustered_files = Compile.out.Compiled_Clustered_files.collect()
            

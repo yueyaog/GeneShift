@@ -9,7 +9,7 @@ This workflow is designed to detect pattern change of time-series gene expressio
   2. Compute initial clustering using [soft-DTW-KMeans](https://arxiv.org/abs/1703.01541)
   3. Compute fine clustering with [DP_GP_cluster](https://github.com/PrincetonUniversity/DP_GP_cluster/tree/master/DP_GP)
   4. Determine the optial number of clusters
-  5. Using deep learning model(RNN LSTM) to test the robusticity of clustering
+  5. Using deep learning model(RNN LSTM) to test the robusticity of clustering 
   6. Post-clustering analysis (replicate sorting) 
   
 ## Installation
@@ -17,8 +17,6 @@ All of GeneShift dependencies can be installed through Anaconda3. The following 
 
 Two anaconda environments need to created for GeneShift
 ```
-module load anaconda3/5.1.0-gcc/8.3.1
-
 conda create -n GeneShift_env python=3.6 matplotlib numpy pandas scikit-learn 
 
 # tslearn needs to be installed separately.
@@ -51,17 +49,19 @@ GeneShift takes ```*_exp_rep.csv``` of the format:
 |      ...      |   ...  |   ...  |   ...  | ... |   ...  |
 | B_gene_n_rep3 |  7.889 |  13.206|  11.192| ... |  9.761 |
 
-where the first row is a header containing the time points and the first column is an index containing condition, geneID, and rep. Entries are seperated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp_rep.csv``` to GeneShift workflow. GeneShift contains a test gene expression matrix for testing purpose. 
+The first row is a header containing the time points, and the first column is an index containing condition, geneID, and rep. You can replace A and B with specific conditions' names. However, you can't change the replicate names. They have to be 'rep1', 'rep2', 'rep3'. Entries are separated by comma. Quantile normalization and log<sub>2</sub>(x+1) transformation need to applied before you input ```*_exp_rep.csv``` to GeneShift workflow. GeneShift contains a test gene expression matrix for testing purposes. 
 
 ## Execute the Workflow
 
 ### Running GeneShift Nextflow Pipeline
-Now, you can run GeneShift as a Nextflow pipeline. It is way easier than executing all the shell scripts one by one and 'babysitting' the submission processes for each task. Instead, you can execute the entire workflow with a single command. The following command will run the example data ```Test_exp_rep.csv``` with K range from 5 to 40. This command is specific to PBS scheduler on Clemson palmetto cluster. It can generalize to any HPC system by adding few modifications in ```nextflow.config```. Although you don't need to run the python script directly, you may want to refer to the following documentation to familiarize yourself with the details of GeneShift workflow.
+Now, you can run GeneShift as a Nextflow pipeline. It is way easier than executing all the shell scripts one by one and 'babysitting' the submission processes for each task. Instead, you can complete the entire workflow with a single command. The following command will run the example data ```Test_exp_rep.csv``` with K range from 5 to 40. This command is specific to the PBS scheduler on the Clemson palmetto cluster. It can generalize to any HPC system by adding a few modifications in ```nextflow.config```. Although you don't need to run the python script directly, you may want to refer to the following documentation to familiarize yourself with the details of the GeneShift workflow.
+
 
 ```
-nextflow run main.nf -profile palmetto  --gem_file Test_exp_rep.csv --data_prefix Test --Kmin 5 --Kmax 40  
+nextflow run main.nf -profile palmetto  --gem_file Test_exp_rep.csv --data_prefix Test --Kmin 5 --Kmax 40  --StepSize 5
 ```
 
+NOTE: Kmax will not included in the final range list because of Groovy syntax. If your Kmin = 5, Kmax = 20, StepSize =5, your k range list will be [5,10,15]
 
 
 ### Running GeneShift Python Script Directly
