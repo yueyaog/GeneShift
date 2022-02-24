@@ -196,7 +196,7 @@ process Compile{
         
         cd \$PBS_O_WORKDIR
         mkdir \$(pwd)/ClusterSummary/
-        echo ${DPGP_Clustered_file}
+        #echo ${DPGP_Clustered_file}
         
         python ${GeneShift_PATH}/Cluster_Compile.py\
         -i ${params.output_path}/DPGP\
@@ -243,7 +243,8 @@ process OptimalK{
         -o \$(pwd)/OptimalK\
         -emx ${off_removed_gem_file}\
         -kmin ${params.Kmin}\
-        -kmax ${params.Kmax} 
+        -kmax ${params.Kmax}\
+        -step ${params.StepSize}
 
     """
         

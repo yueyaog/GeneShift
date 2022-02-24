@@ -34,6 +34,7 @@ parser.add_argument('-i','--inputDIR',dest="inputdir",action='store',required=Tr
 parser.add_argument('-o','--outDIR',dest="outputdir",action='store',required=True,help="Output Directory")
 parser.add_argument('-kmin','--Kmin',dest="kmin",type=int,action='store',help="K min")
 parser.add_argument('-kmax','--Kmax',dest="kmax",type=int,action='store',help="K max")
+parse.add_argument('-step','--StepSize',dest="stepsize",type=int,action='store',help="K Step Size")
 parser.add_argument('-emx','--EMX',dest='gene_expression_matrix',action="store",required=True,help="the path of OFF-removed GEM")
 args = parser.parse_args()
 #########################################################################################
@@ -53,7 +54,7 @@ gene_expression_matrix /= np.vstack(np.nanstd(gene_expression_matrix, axis=1))
 
 # Calculate the calinski harabasz index, silhouette score, davies bouldin index of the various K values and Visualize the results
 
-Kval_list = list(np.arange(args.kmin,args.kmax+1))
+Kval_list = list(np.arange(args.kmin,args.kmax,args.stepsize))
 
 ch_scorelist = []
 sil_scorelist = []
